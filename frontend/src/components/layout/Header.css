@@ -1,0 +1,298 @@
+:root {
+    --primary-color: #337ab7;
+    --hover-bg: #e9ecef;
+    --danger-color: #dc3545;
+    --dropdown-z: 1050;
+}
+
+header {
+    height: 3rem;
+    /* 48px */
+    padding: 0 1rem !important;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #dee2e6;
+    font-size: 0.875rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Sidebar toggle button */
+header .btn {
+    padding: 0.25rem 0.5rem;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+}
+
+header .btn-outline-primary {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    background-color: transparent;
+}
+
+header .btn-outline-primary:hover {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Welcome text and company dropdown */
+header .dropdown-toggle {
+    font-weight: 500;
+    font-size: 0.875rem;
+    color: #212529;
+    padding: 0;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    user-select: none;
+}
+
+header .dropdown-toggle::after {
+    margin-left: 0.25rem;
+    vertical-align: 0.15em;
+}
+
+header .dropdown-toggle:hover {
+    color: var(--primary-color);
+}
+
+/* Company dropdown menu */
+.altered-dropdown-menu {
+    max-height: 12.5rem;
+    overflow-y: auto;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    border-radius: 0.25rem;
+    font-size: 0.875rem;
+    padding: 0.25rem 0;
+    z-index: var(--dropdown-z);
+    white-space: nowrap;
+    background-color: #fff;
+    position: absolute;
+}
+
+/* Company dropdown items */
+.altered-dropdown-menu .dropdown-item {
+    padding: 0.5rem 1.25rem;
+    white-space: nowrap;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.altered-dropdown-menu .dropdown-item:hover,
+.altered-dropdown-menu .dropdown-item.active {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+/* Avatar button */
+header .avatar-btn {
+    width: 35px;
+    height: 35px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    background-color: #f8f9fa;
+    color: #337ab7;
+    border: 1px solid #dee2e6;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    cursor: pointer;
+}
+
+header .avatar-btn:hover {
+    background-color: #e9ecef;
+    color: #0056b3;
+    transform: scale(1.05);
+}
+
+header .avatar-btn:focus,
+header .avatar-btn:active {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+/* Avatar dropdown menu */
+header .avatar-dropdown {
+    padding: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 0.15);
+    font-size: 0.875rem;
+    color: #343a40;
+    background-color: #fff;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    margin-top: 0.25rem;
+    min-width: 280px;
+    z-index: var(--dropdown-z);
+}
+
+/* Card body inside avatar dropdown */
+header .avatar-dropdown .card-body {
+    padding: 1rem;
+}
+
+/* Avatar image styling */
+header .avatar-img img {
+    object-fit: cover;
+    border: 2px solid #007bff;
+    border-radius: 50%;
+}
+
+/* User details inside avatar dropdown */
+header .user-details h6 {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+}
+
+/* Badge container in avatar dropdown */
+header .badge-container .badge {
+    font-size: 0.75rem;
+    padding: 0.5em 0.6em;
+    cursor: pointer;
+    user-select: none;
+    margin-right: 0.25rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 0.25rem;
+}
+
+header .badge-container .badge:hover {
+    background-color: #0056b3;
+}
+
+/* Dropdown action items */
+header .header-dropdown-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+header .header-dropdown-list li {
+    margin: 0.25rem 0;
+    padding: 0.25rem 0;
+}
+
+header .header-dropdown-list li button.dropdown-item {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    background: none;
+    border: none;
+    width: 100%;
+    text-align: left;
+    transition: background-color 0.2s ease;
+    color: #212529;
+}
+
+header .header-dropdown-list li button.dropdown-item:hover {
+    background-color: var(--hover-bg);
+}
+
+header .header-dropdown-list li button.dropdown-item.text-danger:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Bootstrap icons enhancements */
+header .bi {
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+header .bi:hover {
+    color: var(--primary-color);
+}
+
+/* Avatar initials circle */
+header .avatar-initials {
+    width: 40px;
+    height: 40px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    font-size: 0.875rem;
+    user-select: none;
+    text-transform: uppercase;
+    cursor: default;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+/* Responsive fixes for mobile */
+@media (max-width: 480px) {
+    header {
+        height: 3.8rem;
+        font-size: 0.85rem;
+        padding: 0 0.5rem !important;
+    }
+
+    header .btn {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.4rem;
+    }
+
+    header .avatar-btn {
+        width: 36px;
+        height: 36px;
+        font-size: 0.875rem;
+    }
+
+    /* Avatar dropdown menu on mobile */
+    header .avatar-dropdown {
+        position: fixed !important;
+        left: 50% !important;
+        top: 60px !important;
+        /* adjust as needed */
+        transform: translateX(-50%) !important;
+        width: 90vw !important;
+        max-width: 320px !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        white-space: normal !important;
+        z-index: 2000 !important;
+        padding: 1rem !important;
+    }
+
+    /* Company dropdown menu on mobile */
+    .altered-dropdown-menu {
+        position: fixed !important;
+        left: 50% !important;
+        top: 60px !important;
+        /* adjust as needed */
+        transform: translateX(-50%) !important;
+        width: 90vw !important;
+        max-width: 320px !important;
+        max-height: 60vh !important;
+        overflow-y: auto !important;
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        border-radius: 0.5rem;
+        white-space: normal !important;
+        z-index: 2000 !important;
+        padding: 0.5rem 0 !important;
+    }
+
+    .altered-dropdown-menu .dropdown-item {
+        white-space: normal !important;
+        padding: 0.75rem 1rem !important;
+        font-size: 0.875rem;
+    }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1060; /* above dropdown */
+}

@@ -1,0 +1,35 @@
+.custom-loader-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  background-color: #f8f9fa; /* Optional background */
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+
+.custom-loader-wrapper p {
+  font-weight: 600;
+  color: #555;
+  text-align: center;
+  font-size: 1.1rem;
+  animation: pulseScale 2s infinite ease-in-out, fadeIn 1.5s ease forwards;
+  opacity: 0;
+}
+
+@keyframes pulseScale {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}

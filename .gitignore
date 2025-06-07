@@ -1,0 +1,25 @@
+# Ignore node_modules anywhere in the project
+**/node_modules
+
+# Ignore environment variable files anywhere
+**/.env*
+  
+# Ignore logs anywhere
+**/*.log
+
+# Ignore build folders at frontend and backend level if accidentally placed at root
+/build
+/dist
+
+# Ignore editor and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Ignore coverage reports anywhere
+**/coverage
+
+# Ignore package lock files at root if you want to manage them separately in frontend/backend
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
