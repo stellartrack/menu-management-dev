@@ -1,0 +1,1 @@
+import{j as a}from"./index-BzDPl-ij.js";const r=()=>a.jsx("div",{className:"card rounded-4 border-0",children:a.jsxs("div",{className:"card-body",children:[a.jsx("h6",{className:"card-title",children:"Dashboard"}),a.jsx("p",{className:"card-text",children:"Welcome to the dashboard!"})]})});export{r as default};
