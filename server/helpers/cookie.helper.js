@@ -1,7 +1,7 @@
 // helpers/cookie.helper.js
 import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/env.js";
 
-const { JWT_SECRET } = process.env;
 
 // Extract named cookie value from cookie header
 export const extractCookie = (cookieHeader = "", name) => {

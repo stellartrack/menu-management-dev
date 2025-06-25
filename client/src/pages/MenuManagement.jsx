@@ -80,7 +80,7 @@ const MenuManagement = () => {
 
     setLoading(true);
     try {
-      const res = await axiosMenuInstance.get("/api/proxy/menus", {
+      const res = await axiosMenuInstance.get("/api/proxy/menu/menus", {
         params: { dept_cabinet_id: cabinetId },
       });
 
@@ -158,7 +158,7 @@ const MenuManagement = () => {
 
     try {
       // Call API first
-      await axiosMenuInstance.post("/api/proxy/menu", payload);
+      await axiosMenuInstance.post("/api/proxy/menu/manage", payload);
 
       // After success, update local treeData accordingly
       // Update parent of dragged node
@@ -323,7 +323,7 @@ const MenuManagement = () => {
 
     try {
 
-      const response = await axiosMenuInstance.post("/api/proxy/menu", payload);
+      const response = await axiosMenuInstance.post("/api/proxy/menu/manage", payload);
 
       if (response.data.success) {
         toast.success(response.data.message || "Menu saved successfully.");

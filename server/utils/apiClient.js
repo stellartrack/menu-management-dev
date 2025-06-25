@@ -1,6 +1,7 @@
 // utils/apiClient.js
 import axios from "axios";
 import { logInfo, logError } from "./logger.js";
+import { SBS_API_URL, LARAVEL_API_URL } from "../config/env.js";
 
 // Create custom axios instance
 const createApiClient = (baseURL) => {
@@ -57,9 +58,8 @@ const createApiClient = (baseURL) => {
   return client;
 };
 
-// Create named clients
-const apiClient = createApiClient(process.env.SBS_API_URL);
-const authApiClient = createApiClient(process.env.LARAVEL_API_URL);
+const apiClient = createApiClient(SBS_API_URL);
+const authApiClient = createApiClient(LARAVEL_API_URL);
 
 export { apiClient, authApiClient };
 export default apiClient;

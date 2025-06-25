@@ -3,7 +3,7 @@ import { body, query } from "express-validator";
 // POST/PUT - Create or Update
 export const validateCreateOrUpdateMenu = [
   body("menuName").notEmpty().withMessage("Menu name is required"),
-  body("CabinetID").notEmpty().withMessage("Cabinet ID is required"),
+  body("deptCabinetId").notEmpty().withMessage("Cabinet ID is required"),
 ];
 
 // GET - Tree

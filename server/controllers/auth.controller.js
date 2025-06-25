@@ -6,7 +6,7 @@ import { createBaseController } from "./factory/base.controller.factory.js";
 import { extractCookie, createSignedToken } from "../helpers/cookie.helper.js";
 
 const COOKIE_NAME = "mern_shared_auth_token";
-const { JWT_SECRET, NODE_ENV } = process.env;
+import { JWT_SECRET, NODE_ENV } from "../config/env.js";
 
 // Laravel token extraction & payload builder
 const buildAuthPayload = (req) => {

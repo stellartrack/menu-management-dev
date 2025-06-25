@@ -41,7 +41,7 @@ export const AuthProvider = ({ children }) => {
     (async () => {
       setAuthLoading(true);
       try {
-        const res = await fetch(`${API_BASE}api/proxy/me`, {
+        const res = await fetch(`${API_BASE}api/proxy/user/profile`, {
           credentials: "include",
           signal,
         });

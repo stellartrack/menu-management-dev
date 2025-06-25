@@ -1,11 +1,9 @@
 import express from "express";
 import cookieParser from "cookie-parser";
 import cors from "cors";
-import dotenv from "dotenv";
 import allRoutes from "./routes/index.js";
 import errorHandler from "./middleware/error/errorHandler.middleware.js";
-
-dotenv.config();
+import { PORT } from "./config/env.js";
 
 const app = express();
 
@@ -19,7 +17,6 @@ app.use("/api/proxy", allRoutes);
 // Global error handler
 app.use(errorHandler);
 
-const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

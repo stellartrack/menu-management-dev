@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 const CustomPageLoader = React.lazy(() => import('../components/styled/CustomPageLoader'));
 
@@ -31,7 +31,7 @@ const RedirectAuth = () => {
 
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_APP_API_MENU_BASE_URL}api/proxy/set-auth`,
+          `${import.meta.env.VITE_APP_API_MENU_BASE_URL}api/proxy/auth/set-auth`,
           {
             method: "POST",
             headers: { "Content-Type": "application/json" },

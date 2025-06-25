@@ -35,11 +35,12 @@ export const createBaseController = (service, config = {}) => {
     // 🔁 CREATE or UPSERT
     create: async (req, res) => {
       try {
-        const payload = buildPayload(req);
+        const payload = buildPayload(req, "create");
         const result = await resolveMethod("create", "create")(payload);
+        console.log("🚀 create result:", result);
         const isUpdate = !!req.body.menuID; // optional flag logic
 
-        if (result?.data?.result === 1) {
+        if (Number(result?.data?.result) === 1) {
           return responseHandler(
             res,
             isUpdate ? messages.UPDATED : messages.CREATED,
@@ -69,10 +70,10 @@ export const createBaseController = (service, config = {}) => {
     // ✏️ UPDATE
     update: async (req, res) => {
       try {
-        const payload = buildPayload(req);
+        const payload = buildPayload(req, "update");
         const result = await resolveMethod("update", "update")(payload);
 
-        if (result?.data?.result === 1) {
+        if (Number(result?.data?.result) === 1) {
           return responseHandler(res, messages.UPDATED, result.data);
         }
 
@@ -85,7 +86,7 @@ export const createBaseController = (service, config = {}) => {
     // ❌ DELETE
     remove: async (req, res) => {
       try {
-        const payload = buildPayload(req);
+        const payload = buildPayload(req, "remove");
         const result = await resolveMethod("remove", "delete")(payload);
 
         if (result?.data?.result === 1) {

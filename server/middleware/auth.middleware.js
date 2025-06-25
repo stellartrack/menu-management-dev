@@ -1,4 +1,5 @@
 import jwt from "jsonwebtoken";
+import { JWT_SECRET } from "../config/env.js";
 
 const authMiddleware = (req, res, next) => {
   const token = req.cookies?.mern_shared_auth_token;
@@ -9,10 +10,10 @@ const authMiddleware = (req, res, next) => {
 
   try {
     // Verify the JWT token from the cookie
-    const decodedPayload = jwt.verify(token, process.env.JWT_SECRET);
+    const decodedPayload = jwt.verify(token, JWT_SECRET);
 
     // Optionally verify nested token if needed
-    const userData = jwt.verify(decodedPayload.token, process.env.JWT_SECRET);
+    const userData = jwt.verify(decodedPayload.token, JWT_SECRET);
 
     // Attach to request
     req.user = userData;

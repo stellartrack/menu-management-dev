@@ -11,8 +11,8 @@ import {
 
 import { validateRequest } from "../../middleware/validation/validateRequest.middleware.js";
 
-router.post("/menu", validateCreateOrUpdateMenu, validateRequest, MenuController.create);
+router.post("/manage", validateCreateOrUpdateMenu, validateRequest, MenuController.create);
 router.get("/menus", validateGetMenuTreeStructure, validateRequest, MenuController.get);
-router.post("/menu/delete", validateDeleteMenu, validateRequest, MenuController.remove);
+router.post("/delete", validateDeleteMenu, validateRequest, MenuController.remove);
 
 export default router;
