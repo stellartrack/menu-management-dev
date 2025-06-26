@@ -35,8 +35,8 @@ export const validateDeleteRole = createValidators({
 // 🌐 Get Global Roles
 export const validateGetRolesGlobal = createValidators({
   body: {
-    RoleName: [["notEmpty", { errorMessage: "RoleName is required" }]],
-    log_NewEmpid: [["notEmpty", { errorMessage: "log_NewEmpid is required" }]],
+    // RoleName: [["notEmpty", { errorMessage: "RoleName is required" }]],
+    // log_NewEmpid: [["notEmpty", { errorMessage: "log_NewEmpid is required" }]],
   },
 });
 

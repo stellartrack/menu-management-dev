@@ -17,6 +17,7 @@ app.use("/api/proxy", allRoutes);
 // Global error handler
 app.use(errorHandler);
 
+
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
 });

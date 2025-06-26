@@ -6,10 +6,13 @@ import { createBaseService } from "./factory/base.service.factory.js";
 
 const client = getApiClient("default");
 
-export const RoleService = createBaseService(client, {}, {
+export const RoleService = createBaseService(client, {
+  getAll: roleApi.fetchGlobal, // or something appropriate
+}, {
   create: roleApi.create,
   update: roleApi.update,
   delete: roleApi.remove,
   fetchGlobal: roleApi.fetchGlobal,
   fetchCompany: roleApi.fetchCompany,
 });
+
