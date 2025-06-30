@@ -8,6 +8,8 @@ const Dashboard = lazy(() => import('../pages/Dashboard'));
 const MenuManagement = lazy(() => import('../pages/MenuManagement'));
 const RedirectAuth = lazy(() => import('../auth/RedirectAuth'));
 
+const Role = lazy(() => import('../pages/RolesManagement/roles'));
+
 const routes = [
   {
     path: '/auth/redirect',
@@ -28,6 +30,8 @@ const routes = [
       { path: '', element: <Navigate to="dashboard" replace /> },
       { path: 'dashboard', element: <Dashboard /> },
       { path: 'menu-management', element: <MenuManagement /> },
+      { path: 'roles', element: <Role /> },
+      
     ],
   },
   {

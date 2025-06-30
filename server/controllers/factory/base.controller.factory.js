@@ -1,6 +1,9 @@
 // factory/base.controller.factory.js
 
-import { successResponse, errorResponse } from "../../helpers/response.helper.js";
+import {
+  successResponse,
+  errorResponse,
+} from "../../helpers/response.helper.js";
 import { handleControllerError } from "../../helpers/errorHandler.helper.js";
 import { MESSAGES } from "../../constants/messages.js";
 
@@ -23,11 +26,27 @@ export const createBaseController = (service, config = {}) => {
     buildPayload = (req) => ({ ...req.body }),
   } = config;
 
+  // const resolveMethod = (type, fallback) => {
+  //   const method = service[aliases[type] || fallback];
+  //   if (typeof method !== "function") {
+  //     console.warn(`⚠️  Controller function type for "${type}" is not a function.`);
+  //   }
+  //   return method;
+  // };
   const resolveMethod = (type, fallback) => {
-    const method = service[aliases[type] || fallback];
-    if (typeof method !== "function") {
-      console.warn(`⚠️  Controller function type for "${type}" is not a function.`);
+    const methodName = aliases[type] || fallback;
+    const method = service[methodName];
+
+    if (!method) {
+      console.warn(
+        `⚠️ [resolveMethod] No method '${methodName}' found for type '${type}' in service.`
+      );
+    } else {
+      console.log(
+        `🔧 [resolveMethod] Resolved method '${methodName}' for type '${type}'.`
+      );
     }
+
     return method;
   };
 
@@ -35,11 +54,27 @@ export const createBaseController = (service, config = {}) => {
     // 🔁 CREATE or UPSERT
     create: async (req, res) => {
       try {
-        const payload = buildPayload(req, "create");
-        const result = await resolveMethod("create", "create")(payload);
-        console.log("🚀 create result:", result);
-        const isUpdate = !!req.body.menuID; // optional flag logic
+        console.log("📝 [create] Incoming Request Body:", req.body);
+        console.log("📝 [create] Request Params:", req.params);
+        console.log("📝 [create] Request User:", req.user);
 
+        const payload = buildPayload(req, "create");
+        console.log("✅ [create] Payload After buildPayload:", payload);
+
+        console.log("🧪 Available methods in service:", Object.keys(service));
+
+        const method = resolveMethod("create", "create");
+
+        if (!method || typeof method !== "function") {
+          console.error("❌ [create] No valid method found in service.");
+          return errorResponse(res, "Create method not found in service", 500);
+        }
+
+        const result = await method(payload);
+
+        console.log("📦 [create] Service Result:", result);
+
+        const isUpdate = !!req.body.menuID;
         if (Number(result?.data?.result) === 1) {
           return responseHandler(
             res,
@@ -49,8 +84,14 @@ export const createBaseController = (service, config = {}) => {
           );
         }
 
-        return errorResponse(res, messages.FAILED, 400, result?.data?.errors || []);
+        return errorResponse(
+          res,
+          messages.FAILED,
+          400,
+          result?.data?.errors || []
+        );
       } catch (err) {
+        console.error("❌ [create] Error:", err);
         return errorHandler(res, err);
       }
     },
@@ -77,7 +118,12 @@ export const createBaseController = (service, config = {}) => {
           return responseHandler(res, messages.UPDATED, result.data);
         }
 
-        return errorResponse(res, messages.FAILED, 400, result?.data?.errors || []);
+        return errorResponse(
+          res,
+          messages.FAILED,
+          400,
+          result?.data?.errors || []
+        );
       } catch (err) {
         return errorHandler(res, err);
       }
@@ -87,14 +133,35 @@ export const createBaseController = (service, config = {}) => {
     remove: async (req, res) => {
       try {
         const payload = buildPayload(req, "remove");
-        const result = await resolveMethod("remove", "delete")(payload);
+
+        console.log("🔍 [Remove] Final Payload sent to service:", payload);
+        // if (!payload.RoleName) {
+        //   payload.RoleName = req.query?.RoleName || "Unknown"; 
+        // }
+
+        const method = resolveMethod("remove", "delete");
+
+        if (!method || typeof method !== "function") {
+          console.error("❌ [Remove] No valid delete method found in service.");
+          return errorResponse(res, "Delete method not found in service", 500);
+        }
+
+        const result = await method(payload);
+
+        console.log("✅ [Remove] Response from API:", result?.data);
 
         if (result?.data?.result === 1) {
           return responseHandler(res, messages.DELETED, result.data);
         }
 
-        return errorResponse(res, messages.FAILED, 400);
+        return errorResponse(
+          res,
+          result?.data?.message || messages.FAILED,
+          400,
+          result?.data?.errors || []
+        );
       } catch (err) {
+        console.error("❌ [Remove] Error:", err?.response?.data || err);
         return errorHandler(res, err);
       }
     },

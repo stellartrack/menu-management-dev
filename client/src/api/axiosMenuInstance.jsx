@@ -9,8 +9,6 @@ const axiosMenuInstance = axios.create({
     },
 });
 
-
-
 axiosMenuInstance.interceptors.request.use(
   (config) => {
     const token = getToken("node");

@@ -13,7 +13,7 @@ const router = express.Router();
 
 router.post("/role", validateInsertRole, validateRequest, RoleController.create);
 router.put("/role/:id", validateModifyRole, validateRequest, RoleController.update);
-router.delete("/role/:id", validateDeleteRole, validateRequest, RoleController.remove);
+router.post("/role/:id", validateDeleteRole, validateRequest, RoleController.remove);
 router.get("/roles/global", validateGetRolesGlobal, validateRequest, RoleController.getGlobal);
 router.get("/roles/company", validateGetCompanyRolesList, validateRequest, RoleController.getCompany);
 
